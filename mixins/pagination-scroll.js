@@ -2,7 +2,7 @@ import debounce from 'lodash/debounce'
 
 export const nextEventName = 'paginationScrollMixin:next'
 
-export default (breakpoint) => {
+export default (breakpoint, timeout = 150) => {
   return {
     mounted() {
       const [{ add }] = this.$scroller
@@ -20,7 +20,7 @@ export default (breakpoint) => {
         if (scrollHeight - scrollY - innerHeight <= breakpoint) {
           this.$emit(nextEventName)
         }
-      }, 150),
+      }, timeout),
     },
   }
 }
