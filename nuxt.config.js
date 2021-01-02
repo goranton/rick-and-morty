@@ -14,7 +14,11 @@ export default {
   css: ['@/assets/styles/fonts/getschwifty.scss', '@/assets/styles/main.scss'],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [{ src: '@/plugins/scroller', mode: 'client' }],
+  plugins: [
+    '@/plugins/messageBus',
+    '@/plugins/repositories',
+    { src: '@/plugins/scroller', mode: 'client' },
+  ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: false,
