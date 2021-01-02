@@ -11,7 +11,7 @@ export default {
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: [],
+  css: ['@/assets/styles/fonts/getschwifty.scss', '@/assets/styles/main.scss'],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [],
@@ -33,7 +33,6 @@ export default {
     '@nuxtjs/axios',
     'nuxt-svg-loader',
   ],
-
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
     baseURL: 'https://rickandmortyapi.com/api',

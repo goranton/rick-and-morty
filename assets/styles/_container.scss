@@ -1,0 +1,23 @@
+.container {
+  margin: 0 auto;
+}
+
+@include adaptive('desktop') {
+  .container {
+    max-width: 1400px;
+    padding: 0 45px;
+  }
+}
+
+@include adaptive('tablet') {
+  .container {
+    max-width: 960px;
+    padding: 0 20px;
+  }
+}
+
+@include adaptive('phone') {
+  .container {
+    padding: 0 15px;
+  }
+}
