@@ -4,5 +4,11 @@
   </div>
 </template>
 <script>
-export default {}
+export default {
+  beforeDestroy() {
+    // eslint-disable-next-line no-unused-vars
+    const [_, destroy] = this.$scroller
+    destroy()
+  },
+}
 </script>
