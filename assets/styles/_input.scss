@@ -1,0 +1,36 @@
+.input {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Get Schwifty', fantasy;
+  text-align: center;
+}
+
+@include adaptive('phone') {
+  .input {
+    padding: 10px;
+    label {
+      padding-bottom: 15px;
+      font-size: 1.2rem;
+    }
+  }
+}
+
+@include adaptive('tablet') {
+  .input {
+    padding: 15px;
+    label {
+      padding-bottom: 15px;
+      font-size: 1.5rem;
+    }
+  }
+}
+
+@include adaptive('desktop') {
+  .input {
+    padding: 20px;
+    label {
+      padding-bottom: 15px;
+      font-size: 2rem;
+    }
+  }
+}
