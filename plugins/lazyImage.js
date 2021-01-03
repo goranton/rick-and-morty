@@ -7,8 +7,8 @@ Vue.directive('lazy-image', {
     }
 
     const loadImage = () => (el.src = value)
-    const handler = (entries) => {
-      entries.forEach(({ isIntersecting }, observer) => {
+    const handler = (entries, observer) => {
+      entries.forEach(({ isIntersecting }) => {
         if (isIntersecting) {
           loadImage()
           observer.unobserve(el)
