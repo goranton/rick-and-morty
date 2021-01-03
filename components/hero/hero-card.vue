@@ -2,7 +2,7 @@
   <div class="hero-card">
     <div class="hero-card__wrapper">
       <div class="hero-card__image--polygon">
-        <img class="hero-card__image" :src="image" :alt="name" />
+        <img v-lazy-image="image" class="hero-card__image" src="" :alt="name" />
       </div>
       <h2 class="hero-card__name">{{ name }}</h2>
     </div>

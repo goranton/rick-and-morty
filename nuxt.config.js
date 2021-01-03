@@ -17,6 +17,7 @@ export default {
   plugins: [
     '@/plugins/messageBus',
     '@/plugins/repositories',
+    '@/plugins/lazyImage',
     { src: '@/plugins/scroller', mode: 'client' },
   ],
 
