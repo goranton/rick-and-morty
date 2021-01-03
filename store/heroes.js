@@ -22,6 +22,7 @@ export const CONSTANTS = {
     LOAD_HEROES_SUCCESS: `${PREFIX} load heroes success`,
     LOAD_HEROES_FAILED: `${PREFIX} load heroes failed`,
     RESET_HEROES: `${PREFIX} reset heroes`,
+    UPDATE_FILTERS: `${PREFIX} update filters`,
   },
   GETTERS: {
     GET_HEROES: `${PREFIX} get heroes`,
@@ -29,7 +30,13 @@ export const CONSTANTS = {
 }
 
 export const state = () => ({
-  list: paginationState(loadableState({})),
+  list: paginationState(
+    loadableState({
+      filters: {
+        name: '',
+      },
+    })
+  ),
 })
 
 export const actions = {
@@ -40,7 +47,7 @@ export const actions = {
     await loadStart(list, async () => {
       try {
         commit(CONSTANTS.MUTATIONS.LOAD_HEROES_SUCCESS, {
-          ...(await this.$repositories.heroes().list(page)),
+          ...(await this.$repositories.heroes().list(page, list.filters)),
           append,
         })
       } catch (e) {
@@ -77,6 +84,9 @@ export const mutations = {
   },
   [CONSTANTS.MUTATIONS.RESET_HEROES](state) {
     state.list = paginationUpdate(loadableState(state.list))
+  },
+  [CONSTANTS.MUTATIONS.UPDATE_FILTERS](state, filters) {
+    state.list.filters = filters
   },
 }
 
