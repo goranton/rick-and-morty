@@ -19,5 +19,19 @@ export default function () {
 
       return { pagination: { ...pagination, page }, payload }
     },
+    /**
+     * Fetch information about hero by id
+     * @param {Number} id - hero id
+     * @return {Promise<void>}
+     */
+    getById: async (id) => {
+      if (typeof id !== 'number') {
+        throw new TypeError('Id must be a number')
+      }
+
+      const { data } = await $axios.get(`${entrypoint}/${id}`)
+
+      return data
+    },
   }
 }
