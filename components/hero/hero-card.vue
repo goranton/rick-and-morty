@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import { HERO_GENDERS, HERO_STATUSES } from '../../constants/hero'
 export default {
   name: 'HeroCard',
   props: {
@@ -20,29 +19,6 @@ export default {
     },
     name: {
       type: [String, null],
-      required: true,
-    },
-    status: {
-      type: String,
-      validator: (status) => HERO_STATUSES.includes(status),
-      required: true,
-    },
-    species: {
-      type: String,
-      default: () => '',
-    },
-    type: {
-      type: String,
-      default: () => '',
-    },
-    gender: {
-      type: String,
-      validator: (gender) => HERO_GENDERS.includes(gender),
-      required: true,
-    },
-    location: {
-      type: Object,
-      validator: (location) => 'name' in location && 'url' in location,
       required: true,
     },
   },

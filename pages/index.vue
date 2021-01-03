@@ -3,7 +3,14 @@
     <grid :items="heroes">
       <template v-slot:default="{ columns }">
         <grid-column v-for="(items, index) in columns" :key="index">
-          <hero-card v-for="hero in items" :key="hero.id" v-bind="hero" />
+          <nuxt-link
+            v-for="hero in items"
+            :key="hero.id"
+            v-bind="hero"
+            :to="{ name: 'hero-id', params: { id: hero.id } }"
+          >
+            <hero-card :name="hero.name" :image="hero.image" />
+          </nuxt-link>
         </grid-column>
       </template>
     </grid>
