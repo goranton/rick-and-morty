@@ -63,7 +63,7 @@ export const actions = {
     await loadStart(list, async () => {
       try {
         commit(CONSTANTS.MUTATIONS.LOAD_HEROES_SUCCESS, {
-          ...(await this.$repositories.heroes().list(page, list.filters)),
+          ...(await this.$repositories.heroes.list(page, list.filters)),
           append,
         })
       } catch (e) {
@@ -94,12 +94,27 @@ export const actions = {
    * @return {Promise<void>}
    */
   async [CONSTANTS.ACTIONS.LOAD_HERO]({ commit, state: { current } }, id) {
+    const { heroes, episodes } = this.$repositories
+
     await loadStart(current, async () => {
       try {
-        commit(
-          CONSTANTS.MUTATIONS.LOAD_HERO_SUCCESS,
-          await this.$repositories.heroes().getById(id)
-        )
+        const { episode, ...hero } = await heroes.getById(id)
+
+        let loadedEpisodes = []
+
+        if (Array.isArray(episode) && episode.length) {
+          loadedEpisodes = await episodes.getManyByIds(
+            episode.map((link) => {
+              const lastSlashIndex = link.lastIndexOf('/')
+              return lastSlashIndex > -1 && link.substring(lastSlashIndex + 1)
+            })
+          )
+        }
+
+        commit(CONSTANTS.MUTATIONS.LOAD_HERO_SUCCESS, {
+          ...hero,
+          episode: loadedEpisodes,
+        })
       } catch (e) {
         commit(CONSTANTS.MUTATIONS.LOAD_HEROES_FAILED, e)
       }

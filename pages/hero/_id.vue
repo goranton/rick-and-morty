@@ -1,5 +1,5 @@
 <template>
-  <div class="hero__details container">
+  <div v-if="hero" class="hero__details container">
     <div class="hero__head">
       <hero-image :image="hero.image" :alt="hero.name" />
       <div class="hero__personal">

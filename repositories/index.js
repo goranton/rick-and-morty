@@ -1,4 +1,5 @@
 import heroesRepository from './heroes.repository'
+import episodesRepository from './episodies.repository'
 
 const repositories = [
   [
@@ -8,12 +9,19 @@ const repositories = [
     },
     heroesRepository,
   ],
+  [
+    {
+      name: 'episodes',
+      entrypoint: 'episode',
+    },
+    episodesRepository,
+  ],
 ]
 
 export default (dependencies = {}) =>
   repositories.reduce((stack, [{ name, entrypoint }, callback]) => {
     if (typeof callback === 'function') {
-      stack[name] = callback.bind({
+      stack[name] = callback.apply({
         entrypoint,
         ...dependencies,
       })
