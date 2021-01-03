@@ -4,6 +4,7 @@
       class="menu-item__link"
       :to="routeOptions"
       active-class="menu-item__link--active"
+      exact
     >
       <icon-component v-if="icon" class="menu-item__icon" :name="icon" />
       {{ label }}
