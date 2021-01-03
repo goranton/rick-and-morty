@@ -22,6 +22,7 @@
 import SearchInput from '../input/search-input'
 import { HERO_GENDERS, HERO_STATUSES } from '../../constants/hero'
 import SelectInput from '../input/select-input'
+import { validateGender, validateStatus } from '../../helpers/hero.props'
 
 export default {
   name: 'HeroFilters',
@@ -33,10 +34,12 @@ export default {
     },
     gender: {
       type: String,
+      validator: validateGender,
       default: () => '',
     },
     status: {
       type: String,
+      validator: validateStatus,
       default: () => '',
     },
   },

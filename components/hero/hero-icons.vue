@@ -18,11 +18,10 @@ import IconComponent from '../common/icon'
 import {
   HERO_GENDER_FEMALE,
   HERO_GENDER_MALE,
-  HERO_GENDERS,
   HERO_STATUS_ALIVE,
   HERO_STATUS_DEAD,
-  HERO_STATUSES,
 } from '../../constants/hero'
+import { validateGender, validateStatus } from '../../helpers/hero.props'
 
 export default {
   name: 'HeroIcons',
@@ -30,12 +29,12 @@ export default {
   props: {
     gender: {
       type: String,
-      validator: (gender) => HERO_GENDERS.includes(gender),
+      validator: validateGender,
       required: true,
     },
     status: {
       type: String,
-      validator: (status) => HERO_STATUSES.includes(status),
+      validator: validateStatus,
       required: true,
     },
   },
