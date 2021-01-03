@@ -8,7 +8,7 @@ export default function () {
       }
 
       const { data } = await $axios.get(`${entrypoint}/${ids.join()}`)
-      return data
+      return Array.isArray(data) ? data : [data]
     },
   }
 }

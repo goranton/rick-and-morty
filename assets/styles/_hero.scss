@@ -1,0 +1,21 @@
+@include adaptive('phone') {
+  .hero {
+    &__row {
+      padding: 12px 0;
+    }
+  }
+}
+@include adaptive('tablet') {
+  .hero {
+    &__row {
+      padding: 15px 0;
+    }
+  }
+}
+@include adaptive('desktop') {
+  .hero {
+    &__row {
+      padding: 20px 0;
+    }
+  }
+}
