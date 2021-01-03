@@ -18,6 +18,7 @@ export const CONSTANTS = {
     LOAD_HEROES: `${PREFIX} load heroes`,
     LOAD_NEXT_PAGE: `${PREFIX} load next page`,
     LOAD_HERO: `${PREFIX} load hero`,
+    FILTER_HEROES: `${PREFIX} filter heroes`,
   },
   MUTATIONS: {
     LOAD_HEROES_SUCCESS: `${PREFIX} load heroes success`,
@@ -31,6 +32,7 @@ export const CONSTANTS = {
   GETTERS: {
     GET_HEROES: `${PREFIX} get heroes`,
     GET_HERO: `${PREFIX} get hero`,
+    GET_FILTERS: `${PREFIX} get list filters`,
   },
 }
 
@@ -102,6 +104,19 @@ export const actions = {
         commit(CONSTANTS.MUTATIONS.LOAD_HEROES_FAILED, e)
       }
     })
+  },
+  async [CONSTANTS.ACTIONS.FILTER_HEROES](
+    { commit, dispatch, state: { list } },
+    filters
+  ) {
+    if (
+      Object.entries(filters).some(
+        ([key, value]) => list.filters[key] !== value
+      )
+    ) {
+      commit(CONSTANTS.MUTATIONS.UPDATE_FILTERS, filters)
+      await dispatch(CONSTANTS.ACTIONS.LOAD_HEROES)
+    }
   },
 }
 
@@ -182,4 +197,5 @@ export const getters = {
    * @return {*}
    */
   [CONSTANTS.GETTERS.GET_HERO]: ({ current }) => getLoad(current),
+  [CONSTANTS.GETTERS.GET_FILTERS]: ({ list: { filters } }) => filters,
 }
