@@ -21,6 +21,7 @@
     "nuxt-svg-loader": "^1.2.0",
     "sass": "^1.32.0",
     "sass-loader": "^10.1.0",
+    "short-uuid": "^4.1.0",
     "stylelint-scss": "^3.18.0"
   },
   "devDependencies": {

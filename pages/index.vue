@@ -1,6 +1,7 @@
 <template>
-  <div v-if="heroes" class="container">
-    <grid :items="heroes">
+  <div class="container">
+    <hero-filters v-bind="$route.query" @input="filterHeroes" />
+    <grid v-if="heroes" :items="heroes">
       <template v-slot:default="{ columns }">
         <grid-column v-for="(items, index) in columns" :key="index">
           <nuxt-link
@@ -26,9 +27,10 @@ import GridColumn from '../components/grid/grid-column'
 import PaginationScrollMixin, {
   nextEventName,
 } from '../mixins/pagination-scroll'
+import HeroFilters from '../components/hero/hero-filters'
 
 export default {
-  components: { GridColumn, Grid, HeroCard },
+  components: { HeroFilters, GridColumn, Grid, HeroCard },
   mixins: [PaginationScrollMixin(2000)],
   async fetch({ store }) {
     await store.dispatch(`heroes/${CONSTANTS.ACTIONS.LOAD_HEROES}`)
@@ -44,11 +46,18 @@ export default {
   },
   methods: {
     ...mapActions('heroes', {
+      loadHeroes: CONSTANTS.ACTIONS.LOAD_HEROES,
       nextPageOfHeroes: CONSTANTS.ACTIONS.LOAD_NEXT_PAGE,
     }),
     ...mapMutations('heroes', {
       resetHeroes: CONSTANTS.MUTATIONS.RESET_HEROES,
+      updateFilters: CONSTANTS.MUTATIONS.UPDATE_FILTERS,
     }),
+    filterHeroes(filter) {
+      this.$router.push({ query: filter })
+      this.updateFilters(filter)
+      this.loadHeroes()
+    },
   },
 }
 </script>
