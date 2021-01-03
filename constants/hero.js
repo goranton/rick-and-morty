@@ -1,11 +1,13 @@
 export const HERO_STATUS_ALIVE = 'Alive'
 export const HERO_STATUS_DEAD = 'Dead'
 export const HERO_STATUS_UNKNOWN = 'unknown'
+export const HERO_STATUS_GENDERLESS = 'Genderless'
 
 export const HERO_STATUSES = [
   HERO_STATUS_ALIVE,
   HERO_STATUS_DEAD,
   HERO_STATUS_UNKNOWN,
+  HERO_STATUS_GENDERLESS,
 ]
 
 export const HERO_GENDER_MALE = 'Male'
