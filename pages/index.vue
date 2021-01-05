@@ -5,12 +5,11 @@
       <template v-slot:default="{ columns }">
         <grid-column v-for="(items, index) in columns" :key="index">
           <nuxt-link
-            v-for="hero in items"
-            :key="hero.id"
-            v-bind="hero"
-            :to="{ name: 'hero-id', params: { id: hero.id } }"
+            v-for="{ id, name, image } in items"
+            :key="id"
+            :to="{ name: 'hero-id', params: { id } }"
           >
-            <hero-card :name="hero.name" :image="hero.image" />
+            <hero-card :name="name" :image="image" />
           </nuxt-link>
         </grid-column>
       </template>
