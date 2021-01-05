@@ -43,6 +43,7 @@ export default {
   },
   beforeDestroy() {
     this.$off(nextEventName, this.nextPageOfHeroes)
+    this.resetHeroes()
   },
   methods: {
     ...mapActions('heroes', {
